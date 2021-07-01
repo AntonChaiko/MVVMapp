@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <data>
+
 
     </data>
 
@@ -34,7 +32,7 @@
                 style="?textAppearanceSearchResultTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="asdasdasd"
+                android:text="ASDASD"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout"
                 app:layout_constraintStart_toEndOf="@+id/photo_image_view"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -42,8 +40,8 @@
             <TextView
                 android:id="@+id/role_text_view"
                 android:layout_width="0dp"
-                android:text="asdasdasd"
                 android:layout_height="wrap_content"
+                android:text="ASDSAD"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline1"
                 app:layout_constraintStart_toStartOf="@+id/guideline" />

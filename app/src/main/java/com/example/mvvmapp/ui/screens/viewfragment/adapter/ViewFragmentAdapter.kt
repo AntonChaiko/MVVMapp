@@ -6,21 +6,30 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.model.EmployeeModel
 import com.example.mvvmapp.R
 import com.example.mvvmapp.databinding.RecyclerViewItemBinding
-import com.example.mvvmapp.room.Persons
 
 class ViewFragmentAdapter :
-    ListAdapter<Persons, ViewFragmentAdapter.ItemViewHolder>(DiffCallback()) {
+    ListAdapter<EmployeeModel, ViewFragmentAdapter.ItemViewHolder>(DiffCallback) {
+
+    companion object DiffCallback : DiffUtil.ItemCallback<EmployeeModel>() {
+
+        override fun areItemsTheSame(oldItem: EmployeeModel, newItem: EmployeeModel): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: EmployeeModel, newItem: EmployeeModel): Boolean {
+            return oldItem.email == newItem.email
+        }
+    }
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val binding = RecyclerViewItemBinding.bind(itemView)
 
-        fun bind(item: Persons) = with(itemView) {
-            /*       binding.colorHexTextView.text = item.hex
-                   binding.colorNameTextView.text = item.colorName
-                   binding.colorImageView.setImageResource(item.color)*/
+        fun bind(item: EmployeeModel) = with(itemView) {
+           binding.fullNameTextView.text = item.name
 
         }
     }
@@ -36,17 +45,13 @@ class ViewFragmentAdapter :
     }
 
 }
+/*inner class ItemViewHolder(private val binding: RecyclerViewItemBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-class DiffCallback : DiffUtil.ItemCallback<Persons>() {
-
-    override fun areItemsTheSame(
-        oldItem: Persons,
-        newItem: Persons
-    ): Boolean = true
-
-    override fun areContentsTheSame(
-        oldItem: Persons,
-        newItem: Persons
-    ): Boolean = oldItem == newItem
-
-}
+    fun bind(item: EmployeeModel) {
+        binding.fullNameTextView.text = item.name
+        *//*      binding.colorNameTextView.text = item.colorName
+                binding.colorImageView.setImageResource(item.color)
+                binding.copyButton.setOnClickListener { copyHex(item.hex) }*//*
+    }
+}*/
