@@ -13,21 +13,29 @@ import com.example.mvvmapp.ui.screens.viewfragment.adapter.ViewFragmentAdapter
 
 class ViewFragment : BaseFragment<FragmentViewBinding, ViewFragmentViewModel>() {
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.list.observe(viewLifecycleOwner, { it ->
-            setAdapter(it)
-            it.forEach { Log.d("asd", it.email) }
-        })
-        viewModel.getEmployeeLiveData().observe(viewLifecycleOwner,{
-            setAdapter(it)
-        })
+        viewModel.removeAll()
+
+        binding.syncStaffButton.setOnClickListener {
+            viewModel.insertAll()
+            binding.syncStaffButton.visibility = View.GONE
+            binding.recycler.visibility = View.VISIBLE
+            setAdapter()
+        }
+        binding.swipeLayout.setOnRefreshListener {
+            setAdapter()
+            binding.swipeLayout.isRefreshing = false
+        }
     }
 
-    fun setAdapter(list: List<EmployeeModel>) {
-        val adapter = ViewFragmentAdapter()
-        adapter.submitList(list)
-        binding.recycler.adapter = adapter
+    private fun setAdapter() {
+        viewModel.getEmployeeLiveData().observe(viewLifecycleOwner, {
+            val adapter = ViewFragmentAdapter()
+            adapter.submitList(it)
+            binding.recycler.adapter = adapter
+        })
     }
 
     override fun getFragmentView(): Int = R.layout.fragment_view

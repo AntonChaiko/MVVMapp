@@ -1,27 +1,29 @@
 package com.example.data.mapper
 
-import com.example.data.db.DatabaseEmployee
+import com.example.data.db.EmployeeDb
 import com.example.domain.model.EmployeeModel
 
- fun List<EmployeeModel>.asDomainModel(): List<DatabaseEmployee> {
+ fun List<EmployeeModel>.asDomainModel(): List<EmployeeDb> {
     return map {
-        DatabaseEmployee(
+        EmployeeDb(
             id = it.id,
             name = it.name,
             number = it.number,
             email = it.email,
-            role = it.role
+            role = it.role,
+            imgId= it.imgId.toLong()
         )
     }
 }
- fun List<DatabaseEmployee>.asEmployeeModel(): List<EmployeeModel> {
+ fun List<EmployeeDb>.asEmployeeModel(): List<EmployeeModel> {
     return map {
         EmployeeModel(
             id = it.id,
             name = it.name,
             number = it.number,
             email = it.email,
-            role = it.role
+            role = it.role,
+            imgId = it.imgId.toInt()
         )
     }
 }

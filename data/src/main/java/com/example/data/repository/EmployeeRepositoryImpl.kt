@@ -18,6 +18,12 @@ class EmployeeRepositoryImpl(database: EmployeeDatabase) : EmployeeRepository {
         it.asEmployeeModel()
     }
 
+    override suspend fun nukeAll() {
+        withContext(Dispatchers.IO){
+            employeeDay.nukeTable()
+        }
+    }
+
     override suspend fun insertAll(employees: List<EmployeeModel>) {
         withContext(Dispatchers.IO){
             employeeDay.insertAll(employees.asDomainModel())

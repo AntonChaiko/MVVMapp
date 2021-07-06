@@ -1,5 +1,6 @@
 package com.example.mvvmapp.ui.screens.viewfragment.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,8 +29,13 @@ class ViewFragmentAdapter :
 
         private val binding = RecyclerViewItemBinding.bind(itemView)
 
+        @SuppressLint("UseCompatLoadingForDrawables")
         fun bind(item: EmployeeModel) = with(itemView) {
-           binding.fullNameTextView.text = item.name
+            binding.fullNameTextView.text = item.name
+            binding.photoImageView.setImageDrawable(resources.getDrawable(item.imgId))
+            binding.emailTextView.text = item.email
+            binding.numberTextView.text = item.number
+            binding.roleTextView.text = item.role
 
         }
     }
@@ -45,13 +51,3 @@ class ViewFragmentAdapter :
     }
 
 }
-/*inner class ItemViewHolder(private val binding: RecyclerViewItemBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-
-    fun bind(item: EmployeeModel) {
-        binding.fullNameTextView.text = item.name
-        *//*      binding.colorNameTextView.text = item.colorName
-                binding.colorImageView.setImageResource(item.color)
-                binding.copyButton.setOnClickListener { copyHex(item.hex) }*//*
-    }
-}*/

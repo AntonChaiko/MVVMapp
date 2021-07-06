@@ -4,5 +4,6 @@ import com.example.domain.model.EmployeeModel
 
 interface EmployeeRepository {
 //    suspend fun getEmployees(): List<EmployeeModel>
+    suspend fun nukeAll()
     suspend fun insertAll(employees: List<EmployeeModel>)
 }

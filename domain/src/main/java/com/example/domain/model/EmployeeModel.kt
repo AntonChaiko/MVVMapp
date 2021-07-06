@@ -5,6 +5,8 @@ data class EmployeeModel(
     val name: String,
     val number: String,
     val email: String,
-    val role: String
+    val role: String,
+    val imgId:Int
+
 ) {
 }
